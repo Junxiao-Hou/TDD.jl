@@ -78,4 +78,19 @@ using Test
         @test direct_neighbors(graph3, 5) == [3]
 
     end
+
+    @testset "Q2" begin
+        
+        @test reachable_nodes(graph1, 1) == [2, 3, 4, 5, 6]
+        @test reachable_nodes(graph1, 7) == [8, 9]
+        @test reachable_nodes(graph1, 11) == [10, 12]
+        @test reachable_nodes(graph2, 4) == @test reachable_nodes(graph1, 4)
+        @test reachable_nodes(graph2, 8) == @test reachable_nodes(graph1, 8)
+        @test reachable_nodes(graph2, 12) == @test reachable_nodes(graph1, 12)
+        @test reachable_nodes(graph3, 2) == [1, 3, 4, 5, 6]
+        @test reachable_nodes(graph3, 8) == [7]
+        @test reachable_nodes(graph3, 9) == [7, 8, 11]
+        @test reachable_nodes(graph3, 11) == []
+
+    end
 end
