@@ -4,3 +4,4 @@
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://Junxiao-Hou.github.io/TDD.jl/dev)
 [![Build Status](https://github.com/Junxiao-Hou/TDD.jl/workflows/CI/badge.svg)](https://github.com/Junxiao-Hou/TDD.jl/actions)
 [![Coverage](https://codecov.io/gh/Junxiao-Hou/TDD.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/Junxiao-Hou/TDD.jl)
+[![codecov](https://codecov.io/gh/Junxiao-Hou/TDD.jl/branch/main/graph/badge.svg?token=oGIdBfynGd)](https://codecov.io/gh/Junxiao-Hou/TDD.jl)
