@@ -1,5 +1,6 @@
 export direct_neighbors
 export reachable_nodes
+export connected_components
 
 function direct_neighbors(graph::Union{Vector{Vector{Int64}},Vector{Vector{Any}}}, st_node::Int64)
 
@@ -23,5 +24,28 @@ function reachable_nodes(graph::Union{Vector{Vector{Int64}},Vector{Vector{Any}}}
         end
         return sort(collect(Set{Int64}(RNs)))
     end
+
+end
+
+function connected_components(graph::Union{Vector{Vector{Int64}},Vector{Vector{Any}}})
+
+    CCs = []
+    for node in eachindex(graph)
+        RNs = sort([reachable_nodes(graph, node);[node]])
+        if !(RNs in CCs)
+            overlap = false
+            for i in eachindex(CCs)
+                if !isempty(intersect(CCs[i], RNs))
+                    overlap = true
+                    CCs[i] = sort(union(CCs[i], RNs))
+                    break
+                end
+            end
+            if overlap == false
+                push!(CCs, RNs)
+            end
+        end
+    end
+    return Vector{Vector{Int64}}(CCs)
 
 end
