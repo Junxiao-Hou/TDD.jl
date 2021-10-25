@@ -24,4 +24,20 @@ using Test
         @test !isempty(iv1)
         @test isempty(iv2)
     end
+
+    iv3 = Interval(-5.34, 9.78) # The same interval as iv1
+    iv4 = Interval(-5, 9) # Sub-interval of iv1
+    iv5 = Interval(-6, 9) # Not a sub-interval of iv1
+    iv6 = Interval(-7, 10) # Not a sub-interval of iv1
+    iv7 = Interval(9,-10) # Another empty closed interval
+
+    @testset "Q4" begin
+        @test iv2 ⊆ iv1 # An empty interval should be the sub-interval of any interval
+        @test iv2 ⊆ iv7 # An empty interval is also a sub-interval of any empty interval
+        @test iv3 ⊆ iv1 # An interval is a sub-interval of itself
+        @test iv4 ⊆ iv1
+        @test !(iv5 ⊆ iv1)
+        @test !(iv6 ⊆ iv1) 
+    end
+
 end
