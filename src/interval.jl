@@ -48,3 +48,19 @@ function Base.intersect(iv1::Interval, iv2::Interval)
         return Interval(1,-1)
     end
 end
+
+function Base.show(iv::Interval) # no need for real tests?
+    if isempty(iv)
+        show("\u2205")
+    else
+        show("\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
+    end
+end
+
+function Base.print(iv::Interval) # no need for real tests?
+    if isempty(iv)
+        print("\u2205")
+    else
+        print("\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
+    end
+end
