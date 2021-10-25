@@ -116,4 +116,89 @@ using Test
         @test connected_components(graph4) == [[1,2],[3]]
 
     end
+
+    #=
+    The following adjacency matrices are exactly the same as graph 1~4, so the tests and test results should be the same.
+    =#
+    A1 = Bool[
+        1 1 1 1 0 0 0 0 0 0 0 0
+        1 1 1 0 0 0 0 0 0 0 0 0
+        1 1 1 0 1 1 0 0 0 0 0 0
+        1 0 0 1 1 0 0 0 0 0 0 0
+        0 0 1 1 1 0 0 0 0 0 0 0
+        0 0 1 0 0 1 0 0 0 0 0 0
+        0 0 0 0 0 0 1 1 1 0 0 0
+        0 0 0 0 0 0 1 1 0 0 0 0
+        0 0 0 0 0 0 1 0 1 0 0 0
+        0 0 0 0 0 0 0 0 0 1 1 1
+        0 0 0 0 0 0 0 0 0 1 1 0
+        0 0 0 0 0 0 0 0 0 1 0 1
+    ]
+
+    A2 = Bool[
+        0 1 1 1 0 0 0 0 0 0 0 0
+        1 0 1 0 0 0 0 0 0 0 0 0
+        1 1 0 0 1 1 0 0 0 0 0 0
+        1 0 0 0 1 0 0 0 0 0 0 0
+        0 0 1 1 0 0 0 0 0 0 0 0
+        0 0 1 0 0 0 0 0 0 0 0 0
+        0 0 0 0 0 0 0 1 1 0 0 0
+        0 0 0 0 0 0 1 0 0 0 0 0
+        0 0 0 0 0 0 1 0 0 0 0 0
+        0 0 0 0 0 0 0 0 0 0 1 1
+        0 0 0 0 0 0 0 0 0 1 0 0
+        0 0 0 0 0 0 0 0 0 1 0 0
+    ]
+
+    A3 = Bool[
+        0 1 0 1 0 0 0 0 0 0 0 0
+        1 0 0 0 0 0 0 0 0 0 0 0
+        1 1 0 0 0 1 0 0 0 0 0 0
+        0 0 0 0 1 0 0 0 0 0 0 0
+        0 0 1 0 0 0 0 0 0 0 0 0
+        0 0 1 0 0 0 0 0 0 0 0 0
+        0 0 0 0 0 0 0 1 0 0 0 0
+        0 0 0 0 0 0 1 0 0 0 0 0
+        0 0 0 0 0 0 1 0 0 0 1 0
+        0 0 0 0 0 0 0 0 0 0 1 1
+        0 0 0 0 0 0 0 0 0 0 0 0
+        0 0 0 0 0 0 0 0 0 1 0 0
+    ]
+
+    A4 = Bool[
+        0 1 0
+        1 0 0
+        0 0 0
+    ]
+
+    @testset "Q4" begin
+    
+        @test direct_neighbors(A1, 1) == [2, 3, 4]
+        @test direct_neighbors(A1, 2) == [1, 3]
+        @test direct_neighbors(A2, 3) == direct_neighbors(A1, 3)
+        @test direct_neighbors(A2, 4) == direct_neighbors(A1, 4)
+        @test direct_neighbors(A3, 3) == [1, 2, 6]
+        @test direct_neighbors(A3, 4) == [5]
+        @test direct_neighbors(A3, 5) == [3]
+        @test direct_neighbors(A3, 11) == []
+        @test direct_neighbors(A4, 3) == []
+
+        @test reachable_nodes(A1, 1) == [2, 3, 4, 5, 6]
+        @test reachable_nodes(A1, 7) == [8, 9]
+        @test reachable_nodes(A1, 11) == [10, 12]
+        @test reachable_nodes(A2, 4) == reachable_nodes(A1, 4)
+        @test reachable_nodes(A2, 8) == reachable_nodes(A1, 8)
+        @test reachable_nodes(A2, 12) == reachable_nodes(A1, 12)
+        @test reachable_nodes(A3, 2) == [1, 3, 4, 5, 6]
+        @test reachable_nodes(A3, 8) == [7]
+        @test reachable_nodes(A3, 9) == [7, 8, 11]
+        @test reachable_nodes(A3, 11) == []
+        @test reachable_nodes(A4, 3) == []
+
+        @test connected_components(A1) == [[1,2,3,4,5,6],[7,8,9],[10,11,12]]
+        @test connected_components(A2) == connected_components(A1)
+        @test connected_components(A3) == [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+        @test connected_components(A4) == [[1,2],[3]]
+        
+    end
 end
