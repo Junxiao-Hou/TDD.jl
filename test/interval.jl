@@ -1,7 +1,7 @@
 using TDD
 using Test
 
-@testset "interval.jl" begin
+@testset verbose = true "interval.jl" begin
     
     iv1 = Interval(-5.34, 9.78) # A non-empty closed interval
     
@@ -52,9 +52,18 @@ using Test
         @test isempty(iv1 ∩ iv8)
     end
 
-    # Q6 (no need for real tests?)
-    show(iv1)
-    show(iv2)
-    print(iv1)
-    print(iv2)
+    @testset "Q6" begin
+        io = IOBuffer()
+        show(io, iv1)
+        str1 = String(take!(io))
+        # This step will add an extra pair of quotation marks outside the string output by show(io, iv1)
+        @test str1 == "\"〚-5.34, 9.78〛\""
+        io = IOBuffer()
+        show(io, iv2)
+        str2 = String(take!(io))
+        @test str2 == "\"∅\""
+        show(iv1)
+        show(iv2)
+    end
+
 end
