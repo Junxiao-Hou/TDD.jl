@@ -28,3 +28,13 @@ function Base.isempty(iv::Interval)
         return false
     end
 end
+
+function Base.issubset(iv1::Interval, iv2::Interval)
+    if isempty(iv1)
+        return true
+    elseif (iv1.lower_bound >= iv2.lower_bound) && (iv1.upper_bound <= iv2.upper_bound)
+        return true
+    else
+        return false
+    end
+end
