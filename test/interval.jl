@@ -40,4 +40,12 @@ using Test
         @test !(iv6 ⊆ iv1) 
     end
 
+    @testset "Q5" begin
+        @test isempty(iv2 ∩ iv1)
+        @test isempty(iv2 ∩ iv7)
+        @test iv1 ∩ iv3 == iv1
+        @test iv4 ∩ iv1 == iv4
+        @test iv5 ∩ iv1 == Interval(-5.34,9)
+        @test iv6 ∩ iv1 == iv1
+    end
 end
