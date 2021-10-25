@@ -67,6 +67,17 @@ using Test
         [10]
     ]
 
+    #=
+    Example graph4:
+    This is a special graph where there is a completely isolated node 3, 
+    which is used to test if connected_components() can identify this node as an isolated connected component.
+    =#
+    graph4 = [
+        [2],
+        [1],
+        []
+    ]
+
     @testset "Q1" begin
         
         @test direct_neighbors(graph1, 1) == [2, 3, 4]
@@ -77,6 +88,7 @@ using Test
         @test direct_neighbors(graph3, 4) == [5]
         @test direct_neighbors(graph3, 5) == [3]
         @test direct_neighbors(graph3, 11) == []
+        @test direct_neighbors(graph4, 3) == []
 
     end
 
@@ -92,6 +104,7 @@ using Test
         @test reachable_nodes(graph3, 8) == [7]
         @test reachable_nodes(graph3, 9) == [7, 8, 11]
         @test reachable_nodes(graph3, 11) == []
+        @test reachable_nodes(graph4, 3) == []
 
     end
 
@@ -100,6 +113,7 @@ using Test
         @test connected_components(graph1) == [[1,2,3,4,5,6],[7,8,9],[10,11,12]]
         @test connected_components(graph2) == connected_components(graph1)
         @test connected_components(graph3) == [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+        @test connected_components(graph4) == [[1,2],[3]]
 
     end
 end
