@@ -20,9 +20,9 @@ function reachable_nodes(graph::Union{Vector{Vector{Int64}},Vector{Vector{Any}}}
             graphcopy[node] = filter(n -> n != st_node, graphcopy[node])
         end
         for RN in RNs
-            RNs = [RNs; reachable_nodes(graphcopy, RN)]
+            RNs = union(RNs, reachable_nodes(graphcopy, RN))
         end
-        return sort(collect(Set{Int64}(RNs)))
+        return sort(RNs)
     end
 
 end
