@@ -49,18 +49,18 @@ function Base.intersect(iv1::Interval, iv2::Interval)
     end
 end
 
-function Base.show(iv::Interval) # no need for real tests?
+function Base.show(io::IO, iv::Interval)
     if isempty(iv)
-        show("\u2205")
+        show(io, "\u2205")
     else
-        show("\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
+        show(io, "\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
     end
 end
 
-function Base.print(iv::Interval) # no need for real tests?
+function Base.show(iv::Interval)
     if isempty(iv)
-        print("\u2205")
+        show(stdout, "\u2205")
     else
-        print("\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
+        show(stdout, "\u301a$(iv.lower_bound), $(iv.upper_bound)\u301b")
     end
 end
