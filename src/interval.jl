@@ -5,10 +5,18 @@ struct Interval
     upper_bound::Real
 end
 
-function Base.minimum(Interval)
-    return Interval.lower_bound
+function Base.minimum(iv::Interval)
+    return iv.lower_bound
 end
 
-function Base.maximum(Interval)
-    return Interval.upper_bound
+function Base.maximum(iv::Interval)
+    return iv.upper_bound
+end
+
+function Base.in(num::Real, iv::Interval)
+    if num >= iv.lower_bound && num <= iv.upper_bound
+        return true
+    else
+        return false
+    end
 end

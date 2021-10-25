@@ -13,7 +13,9 @@ using Test
     @testset "Q2" begin
         @test 0 ∈ iv1
         @test -5.34 ∈ iv1
-        @test -9.78 ∈ iv1
+        @test 9.78 ∈ iv1
+        @test ! (-5.35 ∈ iv1)
+        @test ! (9.79 ∈ iv1)
     end
 
 end
