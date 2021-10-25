@@ -1,7 +1,7 @@
 using TDD
 using Test
 
-@testset "graph.jl" begin
+@testset verbose = true "graph.jl" begin
 
     #=
     Example graph1:
@@ -199,6 +199,6 @@ using Test
         @test connected_components(A2) == connected_components(A1)
         @test connected_components(A3) == [[1,2,3,4,5,6],[7,8,9,10,11,12]]
         @test connected_components(A4) == [[1,2],[3]]
-        
+
     end
 end
