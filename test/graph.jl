@@ -94,4 +94,12 @@ using Test
         @test reachable_nodes(graph3, 11) == []
 
     end
+
+    @testset "Q3" begin
+        
+        @test connected_components(graph1) == [[1,2,3,4,5,6],[7,8,9],[10,11,12]]
+        @test connected_components(graph2) == connected_components(graph1)
+        @test connected_components(graph3) == [[1,2,3,4,5,6],[7,8,9,10,11,12]]
+
+    end
 end
