@@ -40,6 +40,8 @@ using Test
         @test !(iv6 ⊆ iv1) 
     end
 
+    iv8 = Interval(10, 100)
+
     @testset "Q5" begin
         @test isempty(iv2 ∩ iv1)
         @test isempty(iv2 ∩ iv7)
@@ -47,5 +49,7 @@ using Test
         @test iv4 ∩ iv1 == iv4
         @test iv5 ∩ iv1 == Interval(-5.34,9)
         @test iv6 ∩ iv1 == iv1
+        @test isempty(iv1 ∩ iv8)
     end
+
 end
