@@ -79,20 +79,17 @@ function connected_components(AM::Matrix{Bool})
     CCs = []
     for node in 1:size(AM,1)
         RNs = sort([reachable_nodes(AM, node);[node]])
-        @show RNs
         if !(RNs in CCs)
             overlap = false
             for i in eachindex(CCs)
                 if !isempty(intersect(CCs[i], RNs))
                     overlap = true
                     CCs[i] = sort(union(CCs[i], RNs))
-                    @show CCs
                     break
                 end
             end
             if overlap == false
                 push!(CCs, RNs)
-                @show CCs
             end
         end
     end
