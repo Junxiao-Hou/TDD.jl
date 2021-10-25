@@ -20,3 +20,11 @@ function Base.in(num::Real, iv::Interval)
         return false
     end
 end
+
+function Base.isempty(iv::Interval)
+    if iv.lower_bound > iv.upper_bound
+        return true
+    else
+        return false
+    end
+end
