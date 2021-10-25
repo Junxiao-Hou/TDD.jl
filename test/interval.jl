@@ -52,4 +52,9 @@ using Test
         @test isempty(iv1 ∩ iv8)
     end
 
+    @testset "Q6" begin
+        show(iv1)
+        show(iv2)
+    end
+
 end
